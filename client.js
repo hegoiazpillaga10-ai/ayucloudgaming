@@ -1,41 +1,54 @@
-// Añadir la librería para que el navegador pueda hablar con el servidor
 const script = document.createElement('script');
 script.src = 'https://socket.io';
 document.head.appendChild(script);
 
 script.onload = () => {
-    // === PASO IMPORTANTE ===
-    // Borra el enlace de abajo que está entre comillas e introduce TU ENLACE COPIADO
-    const socket = io('https://stackblitzstarters6zu5uvsm-yoik--3000--bd880c29.local-credentialless.webcontainer.io/');
+    // Conectar a tu servidor de StackBlitz
+    const socket = io('https://webcontainer.io');
 
-    const remoteVideo = document.getElementById('remoteVideo');
     const statusDiv = document.getElementById('status');
+    const container = document.getElementById('stream-container');
 
-    let peerConnection;
-    const config = {
-        iceServers: [{ urls: 'stun:://google.com' }]
-    };
+    // Crear un lienzo (Canvas) de dibujo dentro de tu cuadro verde para ver el juego
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 450;
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    container.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
 
-    async function startMirroring() {
-        peerConnection = new RTCPeerConnection(config);
-        
-        peerConnection.ontrack = (event) => {
-            statusDiv.innerText = "Estado: ¡Juego conectado en vivo!";
-            statusDiv.style.color = "#00ff00";
-            if (remoteVideo.srcObject !== event.streams) {
-                remoteVideo.srcObject = event.streams;
-            }
-        };
+    // Cuando el servidor nos mande información en tiempo real
+    socket.on('renderFotograma', (data) => {
+        statusDiv.innerText = "Estado: ¡STREAMING EN DIRECTO (30 FPS)!";
+        statusDiv.style.color = "#00ff00";
 
-        const inputChannel = peerConnection.createDataChannel("inputControls");
-        
-        window.addEventListener('keydown', (event) => {
-            // Mandar la tecla presionada al servidor de StackBlitz
-            const command = { key: event.key, action: "keydown" };
-            socket.emit('gameInput', JSON.stringify(command));
-            console.log("Comando enviado a la nube: ", command);
+        const juego = JSON.parse(data);
+
+        // Limpiar la pantalla antes de dbiujar el nuevo fotograma
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Dibujar a TU PERSONAJE (un cuadrado azul que controlas tú)
+        ctx.fillStyle = '#00a8ff';
+        ctx.fillRect(juego.jugadorX, juego.jugadorY, 20, 20);
+
+        // Dibujar los OBSTÁCULOS/ENEMIGOS de la nube (círculos rojos)
+        ctx.fillStyle = '#ff3838';
+        juego.enemigos.forEach(enemigo => {
+            ctx.beginPath();
+            ctx.arc(enemigo.x, enemigo.y, 15, 0, Math.PI * 2);
+            ctx.fill();
         });
-    }
+    });
 
-    window.onload = startMirroring;
+    // Capturar tus flechas del teclado y mandarlas al servidor
+    window.addEventListener('keydown', (event) => {
+        if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key)) {
+            event.preventDefault(); // Evita que la página web se mueva hacia abajo
+            const command = { key: event.key };
+            socket.emit('gameInput', JSON.stringify(command));
+        }
+    });
 };
