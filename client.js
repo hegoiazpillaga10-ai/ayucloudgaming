@@ -4,7 +4,7 @@ document.head.appendChild(script);
 
 script.onload = () => {
     // Conectar a tu servidor de StackBlitz
-    const socket = io('https://webcontainer.io');
+    const socket = io('https://stackblitzstarters6zu5uvsm-yoik--3000--bd880c29.local-credentialless.webcontainer.io/');
 
     const statusDiv = document.getElementById('status');
     const container = document.getElementById('stream-container');
