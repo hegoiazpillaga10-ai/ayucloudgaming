@@ -1,15 +1,11 @@
-const script = document.createElement('script');
-script.src = 'https://socket.io';
-document.head.appendChild(script);
+// 1. Conectamos con el backend de StackBlitz
+const socket = io('https://webcontainer.io');
 
 script.onload = () => {
-    // Conectar a tu servidor de StackBlitz
-    const socket = io('https://stackblitzstarters6zu5uvsm-yoik--3000--bd880c29.local-credentialless.webcontainer.io/');
-
     const statusDiv = document.getElementById('status');
     const container = document.getElementById('stream-container');
 
-    // Crear un lienzo (Canvas) de dibujo dentro de tu cuadro verde para ver el juego
+    // 2. Crear el lienzo (Canvas) de dibujo para ver el juego
     const canvas = document.createElement('canvas');
     canvas.width = 800;
     canvas.height = 450;
@@ -19,14 +15,14 @@ script.onload = () => {
     container.appendChild(canvas);
     const ctx = canvas.getContext('2d');
 
-    // Cuando el servidor nos mande información en tiempo real
+    // 3. Cuando el servidor nos mande información en tiempo real
     socket.on('renderFotograma', (data) => {
         statusDiv.innerText = "Estado: ¡STREAMING EN DIRECTO (30 FPS)!";
         statusDiv.style.color = "#00ff00";
 
         const juego = JSON.parse(data);
 
-        // Limpiar la pantalla antes de dbiujar el nuevo fotograma
+        // Limpiar la pantalla antes de dibujar el nuevo fotograma
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -43,7 +39,7 @@ script.onload = () => {
         });
     });
 
-    // Capturar tus flechas del teclado y mandarlas al servidor
+    // 4. Capturar tus flechas del teclado y mandarlas al servidor
     window.addEventListener('keydown', (event) => {
         if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key)) {
             event.preventDefault(); // Evita que la página web se mueva hacia abajo
