@@ -1,3 +1,4 @@
+// --- ELEMENTOS DE LA INTERFAZ ---
 const presentationContainer = document.getElementById('presentationContainer');
 const btnUp = document.getElementById('btnUp');
 const btnDown = document.getElementById('btnDown');
@@ -10,36 +11,55 @@ const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 
-// --- MOTOR DE DIAPOSITIVAS / PRESENTACIÓN ---
+// --- SISTEMA DE DIAPOSITIVAS / PRESENTACIÓN ---
 let paginaActual = 0;
 const totalPaginas = 3;
 
 function actualizarPagina() {
-    presentationContainer.style.transform = `translateY(-${paginaActual * 100}%)`;
-    pageIndicator.innerText = `${paginaActual + 1} / ${totalPaginas}`;
+    if (presentationContainer) {
+        presentationContainer.style.transform = `translateY(-${paginaActual * 100}%)`;
+    }
+    if (pageIndicator) {
+        pageIndicator.innerText = `${paginaActual + 1} / ${totalPaginas}`;
+    }
 }
 
-btnUp.addEventListener('click', () => {
-    if (paginaActual > 0) { paginaActual--; actualizarPagina(); }
-});
+if (btnUp) {
+    btnUp.addEventListener('click', () => {
+        if (paginaActual > 0) { paginaActual--; actualizarPagina(); }
+    });
+}
 
-btnDown.addEventListener('click', () => {
-    if (paginaActual < totalPaginas - 1) { paginaActual++; actualizarPagina(); }
-});
+if (btnDown) {
+    btnDown.addEventListener('click', () => {
+        if (paginaActual < totalPaginas - 1) { paginaActual++; actualizarPagina(); }
+    });
+}
 
+// Control de scroll con la rueda del ratón corregido para evitar parpadeos
+let listoParaScroll = true;
 window.addEventListener('wheel', (event) => {
+    if (!listoParaScroll) return;
+    
     if (event.deltaY > 50 && paginaActual < totalPaginas - 1) {
         paginaActual++;
         actualizarPagina();
+        desactivarScrollTemporal();
     } else if (event.deltaY < -50 && paginaActual > 0) {
         paginaActual--;
         actualizarPagina();
+        desactivarScrollTemporal();
     }
 }, { passive: true });
 
+function desactivarScrollTemporal() {
+    listoParaScroll = false;
+    setTimeout(() => { listoParaScroll = true; }, 600);
+}
 
-// --- NUEVA BASE DE DATOS DE JUEGOS, PORTADAS Y ENLACES ---
-let listaJuegos = [
+
+// --- BASE DE DATOS DE JUEGOS REVISADA Y OPTIMIZADA ---
+const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
         url: "https://retrogames.cc",
@@ -65,9 +85,9 @@ let listaJuegos = [
         jugados: 7500, fecha: 202603
     },
     {
-        titulo: "Pokémon Randomlocke (Random)",
+        titulo: "Pokémon Randomlocke",
         url: "https://retrogames.cc",
-        portada: "https://imgur.com",
+        portada: "https://uncyc.org", // Portada espejo estable
         jugados: 15000, fecha: 202604
     },
     {
@@ -95,31 +115,31 @@ let listaJuegos = [
         jugados: 8000, fecha: 202512
     },
     {
-        titulo: "Fall Guys (Web Clone)",
+        titulo: "Fall Guys Clone",
         url: "https://poki.com",
         portada: "https://unrealengine.com",
         jugados: 14000, fecha: 202607
     },
     {
-        titulo: "Brawl Stars (Web Mini)",
+        titulo: "Brawl Stars Mini",
         url: "https://poki.com",
         portada: "https://poki.com",
         jugados: 18000, fecha: 202608
     },
     {
-        titulo: "Clash Royale (Mini)",
+        titulo: "Clash Royale Mini",
         url: "https://poki.com",
-        portada: "https://imgur.com",
+        portada: "https://poki.com", // Imagen de respaldo segura
         jugados: 11000, fecha: 202609
     },
     {
-        titulo: "Clash of Clans (Mini)",
+        titulo: "Clash of Clans Mini",
         url: "https://poki.com",
-        portada: "https://imgur.com",
+        portada: "https://poki.com", // Imagen de respaldo segura
         jugados: 9800, fecha: 202610
     },
     {
-        titulo: "Geometry Dash Online",
+        titulo: "Geometry Dash",
         url: "https://poki.com",
         portada: "https://wikimedia.org",
         jugados: 22000, fecha: 202611
@@ -133,7 +153,7 @@ let listaJuegos = [
     {
         titulo: "Power Pamplona",
         url: "https://poki.com",
-        portada: "https://imgur.com",
+        portada: "https://poki.com", // Imagen de respaldo segura
         jugados: 6000, fecha: 202301
     },
     {
@@ -143,31 +163,33 @@ let listaJuegos = [
         jugados: 13000, fecha: 202502
     },
     {
-        titulo: "Inazuma Eleven (GBA)",
+        titulo: "Inazuma Eleven GBA",
         url: "https://retrogames.cc",
-        portada: "https://imgur.com",
+        portada: "https://wikimedia.org", // Imagen de respaldo segura
         jugados: 10500, fecha: 202612
     },
     {
-        titulo: "eFootball PES (Retro)",
+        titulo: "eFootball PES Retro",
         url: "https://retrogames.cc",
-        portada: "https://imgur.com",
+        portada: "https://wikimedia.org", // Imagen de respaldo segura
         jugados: 7800, fecha: 202508
     }
 ];
 
 function renderizarCatalogo(juegos) {
+    if (!gamesGrid) return;
     gamesGrid.innerHTML = "";
+    
     juegos.forEach(juego => {
         const card = document.createElement('div');
         card.className = 'game-card';
         card.innerHTML = `
-            <img src="${juego.portada}" alt="${juego.titulo}" onerror="this.src='https://imgur.com'">
-            <div class="game-card-title">${juego.titulo}</div>
+            <img src="${juego.portada}" alt="${juego.titulo}" onerror="this.src='https://poki.com'">
+            <div class="game-card-title" style="padding: 10px; text-align: center; font-size: 0.9rem; font-weight: bold; background: #222;">${juego.titulo}</div>
         `;
         
         card.addEventListener('click', () => {
-            gameFrame.src = juego.url;
+            if (gameFrame) gameFrame.src = juego.url;
             paginaActual = 1; 
             actualizarPagina();
         });
@@ -177,12 +199,12 @@ function renderizarCatalogo(juegos) {
 }
 
 function filtrarYOrdenar() {
-    let textoBusqueda = searchInput.value.toLowerCase();
+    let textoBusqueda = searchInput ? searchInput.value.toLowerCase() : "";
     let juegosFiltrados = listaJuegos.filter(juego => 
         juego.titulo.toLowerCase().includes(textoBusqueda)
     );
     
-    let criterio = sortInput.value;
+    let criterio = sortInput ? sortInput.value : "mas-jugados";
     if (criterio === 'alfabetico') {
         juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
     } else if (criterio === 'mas-jugados') {
@@ -194,17 +216,20 @@ function filtrarYOrdenar() {
     renderizarCatalogo(juegosFiltrados);
 }
 
-searchInput.addEventListener('input', filtrarYOrdenar);
-sortInput.addEventListener('change', filtrarYOrdenar);
+if (searchInput) searchInput.addEventListener('input', filtrarYOrdenar);
+if (sortInput) sortInput.addEventListener('change', filtrarYOrdenar);
 
-fullscreenBtn.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-        videoPlayer.requestFullscreen().catch(err => {
-            alert(`Error al activar pantalla completa: ${err.message}`);
-        });
-    } else {
-        document.exitFullscreen();
-    }
-});
+if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement && videoPlayer) {
+            videoPlayer.requestFullscreen().catch(err => {
+                alert(`Error: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    });
+}
 
+// Forzar carga inicial sin trabas
 filtrarYOrdenar();
