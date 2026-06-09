@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Contenedor principal estilo presentación */
+        /* Contenedor principal estilo presentación fija */
         html, body {
             background-color: #111;
             color: #fff;
@@ -23,14 +23,14 @@
             overflow: hidden; 
         }
 
-        /* El riel que desliza todas las páginas hacia arriba y abajo de forma fluida */
+        /* El riel que desliza todas las páginas hacia arriba y abajo */
         .presentation-container {
             width: 100%;
             height: 100%;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Cada una de las páginas individuales (ocupa exactamente el 100% de la pantalla) */
+        /* Cada una de las páginas individuales */
         .page-slide {
             width: 100%;
             height: 100%;
@@ -38,7 +38,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 60px 40px 60px 100px; /* Margen extra a la izquierda para no tapar los botones */
+            padding: 60px 40px 60px 110px; /* Espacio para los botones de la izquierda */
             position: relative;
         }
 
@@ -54,11 +54,11 @@
             z-index: 100;
         }
         .nav-btn {
-            background-color: rgba(26, 26, 26, 0.8);
-            border: 1px solid #333;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 2px solid #333;
             color: #fff;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -73,8 +73,9 @@
         }
         .page-indicator {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #888;
+            font-weight: bold;
             margin-top: 5px;
         }
 
@@ -136,26 +137,27 @@
             outline: none;
         }
 
-        /* Cuadrícula con scroll interno permitido solo para explorar juegos */
+        /* Cuadrícula con scroll interno PERFECTO para explorar tus juegos */
         .games-grid {
             width: 100%;
             max-width: 1000px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 25px;
             overflow-y: auto;
             padding-right: 10px;
             flex-grow: 1;
         }
-        .games-grid::-webkit-scrollbar { width: 6px; }
-        .games-grid::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .games-grid::-webkit-scrollbar { width: 8px; }
+        .games-grid::-webkit-scrollbar-thumb { background: #107c10; border-radius: 4px; }
+        .games-grid::-webkit-scrollbar-track { background: #222; }
 
         .game-card {
             background-color: #1a1a1a;
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.25s ease-in-out;
             border: 1px solid #252525;
             display: flex;
             flex-direction: column;
@@ -163,7 +165,7 @@
         .game-card:hover {
             transform: translateY(-5px);
             border-color: #107c10;
-            box-shadow: 0 10px 20px rgba(16, 124, 16, 0.15);
+            box-shadow: 0 10px 20px rgba(16, 124, 16, 0.2);
         }
         .game-card img {
             width: 100%;
@@ -172,12 +174,16 @@
             background-color: #222;
         }
         .game-card-title {
-            padding: 12px;
+            padding: 10px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             background: #1e1e1e;
             color: #fff;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ================= DIAPOSITIVA 2: EL REPRODUCTOR ================= */
@@ -284,7 +290,7 @@
 
     </div>
 
-    <!-- Carga inmediata y segura utilizando el atributo defer -->
-    <script src="client.js" defer></script>
+    <!-- Carga segura al final -->
+    <script src="client.js"></script>
 </body>
 </html>
