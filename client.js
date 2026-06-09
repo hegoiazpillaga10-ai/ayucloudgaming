@@ -1,72 +1,136 @@
-// 1. Cambiar el estado visual de la pantalla inmediatamente
-const statusDiv = document.getElementById('status');
-const container = document.getElementById('stream-container');
+const presentationContainer = document.getElementById('presentationContainer');
+const btnUp = document.getElementById('btnUp');
+const btnDown = document.getElementById('btnDown');
+const pageIndicator = document.getElementById('pageIndicator');
 
-statusDiv.innerText = "Estado: ¡STREAMING EN DIRECTO (30 FPS)!";
-statusDiv.style.color = "#00ff00";
+const gameFrame = document.getElementById('gameFrame');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+const videoPlayer = document.getElementById('videoPlayer');
+const gamesGrid = document.getElementById('gamesGrid');
+const searchInput = document.getElementById('searchInput');
+const sortInput = document.getElementById('sortInput');
 
-// 2. Crear la pantalla del juego
-const canvas = document.createElement('canvas');
-canvas.width = 800;
-canvas.height = 450;
-canvas.style.position = 'absolute';
-canvas.style.top = '0';
-canvas.style.left = '0';
-container.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+// --- MOTOR DE DIAPOSITIVAS / PRESENTACIÓN ---
+let paginaActual = 0;
+const totalPaginas = 3;
 
-// 3. Posiciones internas de los personajes
-let juego = {
-    jugadorX: 390,
-    jugadorY: 215,
-    enemigos: [
-        { x: 150, y: 120, velocidadX: 2, velocidadY: 1 },
-        { x: 600, y: 150, velocidadX: -1, velocidadY: 2 },
-        { x: 300, y: 350, velocidadX: 1.5, velocidadY: -1.5 }
-    ]
-};
+function actualizarPagina() {
+    // Mueve la vista verticalmente simulando cambio de diapositiva
+    presentationContainer.style.transform = `translateY(-${paginaActual * 100}%)`;
+    pageIndicator.innerText = `${paginaActual + 1} / ${totalPaginas}`;
+}
 
-// 4. Capturar tus flechas del teclado y mover el personaje azul
-window.addEventListener('keydown', (event) => {
-    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key)) {
-        event.preventDefault(); // Evita que la página se mueva hacia abajo
-        
-        if (event.key === 'ArrowUp') juego.jugadorY -= 15;
-        if (event.key === 'ArrowDown') juego.jugadorY += 15;
-        if (event.key === 'ArrowLeft') juego.jugadorX -= 15;
-        if (event.key === 'ArrowRight') juego.jugadorX += 15;
+// Pasar páginas con los botones laterales
+btnUp.addEventListener('click', () => {
+    if (paginaActual > 0) {
+        paginaActual--;
+        actualizarPagina();
     }
 });
 
-// 5. El bucle que dibuja el juego en tu pantalla en tiempo real
-function actualizarJuego() {
-    // Limpiar pantalla en negro
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+btnDown.addEventListener('click', () => {
+    if (paginaActual < totalPaginas - 1) {
+        paginaActual++;
+        actualizarPagina();
+    }
+});
 
-    // Mover y rebotar los obstáculos automáticos (los círculos rojos)
-    juego.enemigos.forEach(enemigo => {
-        enemigo.x += enemigo.velocidadX;
-        enemigo.y += enemigo.velocidadY;
+// Cambiar de página de forma controlada al usar la rueda del ratón (Scroll limitado)
+window.addEventListener('wheel', (event) => {
+    if (event.deltaY > 50 && paginaActual < totalPaginas - 1) {
+        paginaActual++;
+        actualizarPagina();
+    } else if (event.deltaY < -50 && paginaActual > 0) {
+        paginaActual--;
+        actualizarPagina();
+    }
+}, { passive: true });
 
-        // Rebotar en los bordes de la pantalla
-        if (enemigo.x < 15 || enemigo.x > canvas.width - 15) enemigo.velocidadX *= -1;
-        if (enemigo.y < 15 || enemigo.y > canvas.height - 15) enemigo.velocidadY *= -1;
 
-        // Dibujar círculo rojo
-        ctx.fillStyle = '#ff3838';
-        ctx.beginPath();
-        ctx.arc(enemigo.x, enemigo.y, 15, 0, Math.PI * 2);
-        ctx.fill();
+// --- BASE DE DATOS DE JUEGOS Y PORTADAS ---
+let listaJuegos = [
+    {
+        titulo: "Pokémon Rojo Fuego",
+        url: "https://retrogames.cc",
+        portada: "https://uncyc.org",
+        jugados: 9500,
+        fecha: 202401
+    },
+    {
+        titulo: "Fortnite (Web Pixel)",
+        url: "https://gameforge.com",
+        portada: "https://unrealengine.com",
+        jugados: 12000,
+        fecha: 202506
+    },
+    {
+        titulo: "Rocket League (2D)",
+        url: "https://poki.com",
+        portada: "https://epicgames.com",
+        jugados: 8000,
+        fecha: 202512
+    },
+    {
+        titulo: "Asteroids Clásico",
+        url: "https://playasteroids.com",
+        portada: "https://wikimedia.org",
+        jugados: 3000,
+        fecha: 202305
+    }
+];
+
+function renderizarCatalogo(juegos) {
+    gamesGrid.innerHTML = "";
+    juegos.forEach(juego => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            <img src="${juego.portada}" alt="${juego.titulo}">
+            <div class="game-card-title">${juego.titulo}</div>
+        `;
+        
+        // Al clicar una portada, se inyecta el juego y pasa automáticamente a la Diapositiva 2 (Consola)
+        card.addEventListener('click', () => {
+            gameFrame.src = juego.url;
+            paginaActual = 1; 
+            actualizarPagina();
+        });
+        
+        gamesGrid.appendChild(card);
     });
-
-    // Dibujar a tu personaje (el cuadrado azul)
-    ctx.fillStyle = '#00a8ff';
-    ctx.fillRect(juego.jugadorX, juego.jugadorY, 20, 20);
-
-    // Volver a dibujar en el siguiente fotograma
-    requestAnimationFrame(actualizarJuego);
 }
 
-// Arrancar el juego de inmediato
-actualizarJuego();
+function filtrarYOrdenar() {
+    let textoBusqueda = searchInput.value.toLowerCase();
+    let juegosFiltrados = listaJuegos.filter(juego => 
+        juego.titulo.toLowerCase().includes(textoBusqueda)
+    );
+    
+    let criterio = sortInput.value;
+    if (criterio === 'alfabetico') {
+        juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (criterio === 'mas-jugados') {
+        juegosFiltrados.sort((a, b) => b.jugados - a.jugados);
+    } else if (criterio === 'novedades') {
+        juegosFiltrados.sort((a, b) => b.fecha - a.fecha);
+    }
+    
+    renderizarCatalogo(juegosFiltrados);
+}
+
+searchInput.addEventListener('input', filtrarYOrdenar);
+sortInput.addEventListener('change', filtrarYOrdenar);
+
+// --- PANTALLA COMPLETA ---
+fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        videoPlayer.requestFullscreen().catch(err => {
+            alert(`Error al activar pantalla completa: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+});
+
+// Carga inicial
+filtrarYOrdenar();
