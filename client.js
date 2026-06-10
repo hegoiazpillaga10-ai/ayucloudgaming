@@ -3,9 +3,7 @@ const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 
-const portadaSegura = "https://unsplash.com";
-
-// --- BASE DE DATOS DE JUEGOS CON ENLACES ALTERNATIVOS ANTI-BLOQUEO ---
+// --- BASE DE DATOS DE JUEGOS ENLACES ORIGINALES ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -45,7 +43,7 @@ const listaJuegos = [
     },
     {
         titulo: "Pokelike",
-        url: "https://dynamons.io",
+        url: "https://hwcdn.net", // Enlace de carga crudo directo del juego
         icono: "🐉", color: "linear-gradient(135deg, #11998e, #38ef7d)",
         jugados: 14500, fecha: 202614
     },
@@ -125,7 +123,9 @@ function renderizarCatalogo(juegos) {
         `;
         
         card.addEventListener('click', () => {
-            window.open(juego.url, '_blank');
+            // MOTOR PROXYS TRANSPARENTE: Enmascara de forma automática el juego para saltarse el firewall escolar
+            const urlCamuflada = "https://allorigins.win" + encodeURIComponent(juego.url);
+            window.open(urlCamuflada, '_blank');
         });
         
         gamesGrid.appendChild(card);
