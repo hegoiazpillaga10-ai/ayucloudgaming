@@ -7,105 +7,105 @@ const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 const streamSection = document.getElementById('streamSection');
 
-// Enlace de repuesto estandarizado libre de bloqueos de red
-const portadaSegura = "https://wikimedia.org";
+// Imagen base segura por si internet va lento
+const portadaSegura = "https://unsplash.com";
 
-// --- BASE DE DATOS DE JUEGOS ACTUALIZADA ---
+// --- BASE DE DATOS DE JUEGOS CON NOMBRES EXACTOS ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
         url: "https://retrogames.cc",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 9500, fecha: 202401
     },
     {
         titulo: "Pokémon Zafiro",
         url: "https://retrogames.cc",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 8700, fecha: 202601
     },
     {
         titulo: "Pokémon Negro",
         url: "https://retrogames.cc",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 9100, fecha: 202602
     },
     {
         titulo: "Pokémon X",
         url: "https://retrogames.cc", 
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 7500, fecha: 202603
     },
     {
         titulo: "Pokémon Randomlocke",
         url: "https://retrogames.cc",
-        portada: "https://wikimedia.org", 
+        portada: "https://unsplash.com", 
         jugados: 15000, fecha: 202604
     },
     {
         titulo: "PokeRogue",
         url: "https://pokerogue.net",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 19000, fecha: 202605
     },
     {
         titulo: "Minecraft",
         url: "https://minecraft.net",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 25000, fecha: 202606
     },
     {
         titulo: "Fortnite",
         url: "https://gameforge.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 12000, fecha: 202506
     },
     {
         titulo: "Rocket League",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 8000, fecha: 202512
     },
     {
         titulo: "Fall Guys",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 14000, fecha: 202607
     },
     {
         titulo: "Brawl Stars",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 18000, fecha: 202608
     },
     {
         titulo: "Geometry Dash",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 22000, fecha: 202611
     },
     {
         titulo: "Subway Surfers",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 30000, fecha: 202412
     },
     {
         titulo: "Rodeo Stampede",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 13000, fecha: 202502
     },
     {
         titulo: "Inazuma Eleven GBA",
         url: "https://retrogames.cc",
-        portada: "https://wikimedia.org", 
+        portada: "https://unsplash.com", 
         jugados: 10500, fecha: 202612
     },
     {
-        titulo: "Subnautica 2D",
+        titulo: "Subnautica",
         url: "https://poki.com",
-        portada: "https://wikimedia.org",
+        portada: "https://unsplash.com",
         jugados: 16500, fecha: 202613
     }
 ];
@@ -167,5 +167,5 @@ if (fullscreenBtn) {
     });
 }
 
-// Inicializar el catálogo liberado de bloqueos de red
+// Pintar catálogo inicial
 filtrarYOrdenar();
