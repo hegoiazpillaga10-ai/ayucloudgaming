@@ -3,10 +3,9 @@ const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 
-// Enlace de respaldo por si acaso
 const portadaSegura = "https://unsplash.com";
 
-// --- BASE DE DATOS DE JUEGOS CON ENLACES DIRECTOS PARA EL INSTITUTO ---
+// --- BASE DE DATOS DE JUEGOS CON ENLACES ALTERNATIVOS ANTI-BLOQUEO ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -46,7 +45,7 @@ const listaJuegos = [
     },
     {
         titulo: "Pokelike",
-        url: "https://poki.com",
+        url: "https://dynamons.io",
         icono: "🐉", color: "linear-gradient(135deg, #11998e, #38ef7d)",
         jugados: 14500, fecha: 202614
     },
@@ -58,43 +57,43 @@ const listaJuegos = [
     },
     {
         titulo: "Fortnite",
-        url: "https://gameforge.com",
+        url: "https://buildnowgg.com",
         icono: "🪂", color: "linear-gradient(135deg, #833ab4, #fd1d1d)",
         jugados: 12000, fecha: 202506
     },
     {
         titulo: "Rocket League",
-        url: "https://poki.com",
+        url: "https://3dcar.games",
         icono: "🏎️", color: "linear-gradient(135deg, #00c6ff, #0072ff)",
         jugados: 8000, fecha: 202512
     },
     {
         titulo: "Fall Guys",
-        url: "https://poki.com",
+        url: "https://lolbeans.io",
         icono: "👑", color: "linear-gradient(135deg, #ff007f, #ffaa00)",
         jugados: 14000, fecha: 202607
     },
     {
         titulo: "Brawl Stars",
-        url: "https://poki.com",
+        url: "https://superroyale.io",
         icono: "⭐", color: "linear-gradient(135deg, #fbc531, #4cd137)",
         jugados: 18000, fecha: 202608
     },
     {
         titulo: "Geometry Dash",
-        url: "https://poki.com",
+        url: "https://geometry-dash.co",
         icono: "🟩", color: "linear-gradient(135deg, #0099f7, #f11712)",
         jugados: 22000, fecha: 202611
     },
     {
         titulo: "Subway Surfers",
-        url: "https://poki.com",
+        url: "https://subwaysurfers.io",
         icono: "🏃", color: "linear-gradient(135deg, #ff9900, #ff5500)",
         jugados: 30000, fecha: 202412
     },
     {
         titulo: "Rodeo Stampede",
-        url: "https://poki.com",
+        url: "https://github.io",
         icono: "🤠", color: "linear-gradient(135deg, #ffe259, #ffa751)",
         jugados: 13000, fecha: 202502
     },
@@ -106,7 +105,7 @@ const listaJuegos = [
     },
     {
         titulo: "Subnautica",
-        url: "https://poki.com",
+        url: "https://deeeep.io",
         icono: "🦈", color: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
         jugados: 16500, fecha: 202613
     }
@@ -125,7 +124,6 @@ function renderizarCatalogo(juegos) {
             <div class="game-card-title">${juego.titulo}</div>
         `;
         
-        // TRUCO DE TRÁFICO LIBRE: Al hacer clic, abre el juego en una pestaña nueva burlando el proxy del instituto
         card.addEventListener('click', () => {
             window.open(juego.url, '_blank');
         });
@@ -155,5 +153,4 @@ function filtrarYOrdenar() {
 if (searchInput) searchInput.addEventListener('input', filtrarYOrdenar);
 if (sortInput) sortInput.addEventListener('change', filtrarYOrdenar);
 
-// Inicializar el catálogo liberado de bloqueos
 filtrarYOrdenar();
