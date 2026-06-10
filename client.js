@@ -1,13 +1,12 @@
 // --- ELEMENTOS DE LA INTERFAZ ---
-const gameFrame = document.getElementById('gameFrame');
-const fullscreenBtn = document.getElementById('fullscreenBtn');
-const videoPlayer = document.getElementById('videoPlayer');
 const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
-const streamSection = document.getElementById('streamSection');
 
-// --- BASE DE DATOS DE JUEGOS CON EMOJIS (BLINDADO CONTRA CORTAFUEGOS) ---
+// Enlace de respaldo por si acaso
+const portadaSegura = "https://unsplash.com";
+
+// --- BASE DE DATOS DE JUEGOS CON ENLACES DIRECTOS PARA EL INSTITUTO ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -126,11 +125,9 @@ function renderizarCatalogo(juegos) {
             <div class="game-card-title">${juego.titulo}</div>
         `;
         
+        // TRUCO DE TRÁFICO LIBRE: Al hacer clic, abre el juego en una pestaña nueva burlando el proxy del instituto
         card.addEventListener('click', () => {
-            if (gameFrame) gameFrame.src = juego.url;
-            if (streamSection) {
-                streamSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            window.open(juego.url, '_blank');
         });
         
         gamesGrid.appendChild(card);
@@ -158,17 +155,5 @@ function filtrarYOrdenar() {
 if (searchInput) searchInput.addEventListener('input', filtrarYOrdenar);
 if (sortInput) sortInput.addEventListener('change', filtrarYOrdenar);
 
-if (fullscreenBtn) {
-    fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement && videoPlayer) {
-            videoPlayer.requestFullscreen().catch(err => {
-                alert(`Error: ${err.message}`);
-            });
-        } else {
-            document.exitFullscreen();
-        }
-    });
-}
-
-// Carga inicial del catálogo
+// Inicializar el catálogo liberado de bloqueos
 filtrarYOrdenar();
