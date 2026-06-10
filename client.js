@@ -7,10 +7,10 @@ const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 const streamSection = document.getElementById('streamSection');
 
-// Imagen base segura por si internet va lento
+// Fondo básico seguro de mando por si alguna red externa va lenta
 const portadaSegura = "https://unsplash.com";
 
-// --- BASE DE DATOS DE JUEGOS CON NOMBRES EXACTOS ---
+// --- BASE DE DATOS CORREGIDA AL 100% ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -167,5 +167,5 @@ if (fullscreenBtn) {
     });
 }
 
-// Pintar catálogo inicial
+// Dibujar catálogo inmediatamente de forma directa
 filtrarYOrdenar();
