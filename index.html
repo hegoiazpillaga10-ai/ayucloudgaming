@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AyuCloudGaming</title>
-    <!-- Iconos premium para el buscador y utilidades -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         * {
@@ -167,11 +166,11 @@
 
     <div class="main-content">
         <section class="section-block">
-            <h2>Catálogo Oficial de Juegos</h2>
+            <h2>Catálogo Escolar de Juegos Desbloqueados</h2>
             <div class="toolbar">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar juego...">
+                    <input type="text" id="searchInput" placeholder="Buscar juego desbaneado...">
                 </div>
                 <div class="sort-box">
                     <select id="sortInput">
@@ -185,10 +184,10 @@
         </section>
     </div>
 
-    <!-- Forzamos de forma dinámica que el botón de refrescar superior lea los cambios -->
+    <!-- Forzado automático de borrado de caché para el instituto -->
     <script>
         const script = document.createElement('script');
-        script.src = 'client.js?cache=' + Date.now();
+        script.src = 'client.js?v=' + Math.random();
         document.body.appendChild(script);
     </script>
 </body>
