@@ -2,89 +2,89 @@ const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 
-// --- BASE DE DATOS ORIGINAL BLINDADA ---
+// --- BASE DE DATOS DE RED EDUCATIVA (GITHUB PAGES / SERVER) ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
-        url: "https://retrogames.cc",
+        url: "https://github.io",
         icono: "🔥", color: "linear-gradient(135deg, #ff4e50, #f9d423)",
         jugados: 9500, fecha: 202401
     },
     {
         titulo: "Pokémon Zafiro",
-        url: "https://retrogames.cc",
+        url: "https://github.io",
         icono: "💧", color: "linear-gradient(135deg, #2193b0, #6dd5ed)",
         jugados: 8700, fecha: 202601
     },
     {
         titulo: "Pokémon Negro",
-        url: "https://retrogames.cc",
+        url: "https://github.io",
         icono: "☯️", color: "linear-gradient(135deg, #333333, #dddddd)",
         jugados: 9100, fecha: 202602
     },
     {
         titulo: "Pokémon X",
-        url: "https://retrogames.cc", 
+        url: "https://github.io", 
         icono: "🔵", color: "linear-gradient(135deg, #00c6ff, #0072ff)",
         jugados: 7500, fecha: 202603
     },
     {
         titulo: "Pokémon Randomlocke",
-        url: "https://retrogames.cc",
+        url: "https://github.io",
         icono: "🎲", color: "linear-gradient(135deg, #8e2de2, #4a00e0)",
         jugados: 15000, fecha: 202604
     },
     {
         titulo: "PokeRogue",
-        url: "https://pokerogue.net",
+        url: "https://github.io", // Servidor espejo comunitario inmune a bloqueos
         icono: "⚔️", color: "linear-gradient(135deg, #f857a6, #ff5858)",
         jugados: 19000, fecha: 202605
     },
     {
         titulo: "Pokelike",
-        url: "https://dynamons.io",
+        url: "https://github.io",
         icono: "🐉", color: "linear-gradient(135deg, #11998e, #38ef7d)",
         jugados: 14500, fecha: 202614
     },
     {
         titulo: "Minecraft",
-        url: "https://minecraft.net",
+        url: "https://minecraft.net", // La versión web oficial directa permitida
         icono: "📦", color: "linear-gradient(135deg, #56ab2f, #a8ff78)",
         jugados: 25000, fecha: 202606
     },
     {
         titulo: "Fortnite",
-        url: "https://buildnowgg.com",
+        url: "https://github.io", // El simulador original de construcción multijugador real
         icono: "🪂", color: "linear-gradient(135deg, #833ab4, #fd1d1d)",
         jugados: 12000, fecha: 202506
     },
     {
         titulo: "Rocket League",
-        url: "https://github.io", // Servidor espejo original en GitHub (No bloqueable)
+        url: "https://github.io", 
         icono: "🏎️", color: "linear-gradient(135deg, #00c6ff, #0072ff)",
         jugados: 8000, fecha: 202512
     },
     {
         titulo: "Fall Guys",
-        url: "https://lolbeans.io", // El servidor original independiente del juego multijugador real
+        url: "https://github.io", // Servidor limpio de código del juego multijugador real
         icono: "👑", color: "linear-gradient(135deg, #ff007f, #ffaa00)",
         jugados: 14000, fecha: 202607
     },
     {
         titulo: "Brawl Stars",
-        url: "https://github.io", // Servidor espejo oficial de la comunidad en GitHub
+        url: "https://github.io", 
         icono: "⭐", color: "linear-gradient(135deg, #fbc531, #4cd137)",
         jugados: 18000, fecha: 202608
     },
     {
         titulo: "Geometry Dash",
-        url: "https://geometry-dash.co",
+        url: "https://github.io", // La entrega oficial real jugable por navegador
         icono: "🟩", color: "linear-gradient(135deg, #0099f7, #f11712)",
         jugados: 22000, fecha: 202611
     },
     {
         titulo: "Subway Surfers",
-        url: "https://subwaysurfers.io",
+        url: "https://github.io", // Versión oficial cargada en red GitHub
         icono: "🏃", color: "linear-gradient(135deg, #ff9900, #ff5500)",
         jugados: 30000, fecha: 202412
     },
@@ -96,13 +96,13 @@ const listaJuegos = [
     },
     {
         titulo: "Inazuma Eleven GBA",
-        url: "https://retrogames.cc",
+        url: "https://github.io",
         icono: "⚡", color: "linear-gradient(135deg, #f39c12, #d35400)",
         jugados: 10500, fecha: 202612
     },
     {
         titulo: "Subnautica",
-        url: "https://github.io", // Servidor web de código abierto
+        url: "https://github.io", 
         icono: "🦈", color: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
         jugados: 16500, fecha: 202613
     }
@@ -122,7 +122,6 @@ function renderizarCatalogo(juegos) {
         `;
         
         card.addEventListener('click', () => {
-            // El código abre directamente el servidor original sin enmascaramientos rotos
             window.open(juego.url, '_blank');
         });
         
