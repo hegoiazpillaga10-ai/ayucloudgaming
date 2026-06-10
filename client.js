@@ -1,43 +1,13 @@
 // --- ELEMENTOS DE LA INTERFAZ ---
-const presentationContainer = document.getElementById('presentationContainer');
-const btnUp = document.getElementById('btnUp');
-const btnDown = document.getElementById('btnDown');
-const pageIndicator = document.getElementById('pageIndicator');
-
 const gameFrame = document.getElementById('gameFrame');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
 const videoPlayer = document.getElementById('videoPlayer');
 const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
+const streamSection = document.getElementById('streamSection');
 
-// --- SISTEMA DE DIAPOSITIVAS (BOTONES DE LA IZQUIERDA) ---
-let paginaActual = 0;
-const totalPaginas = 3;
-
-function actualizarPagina() {
-    if (presentationContainer) {
-        presentationContainer.style.transform = `translateY(-${paginaActual * 100}%)`;
-    }
-    if (pageIndicator) {
-        pageIndicator.innerText = `${paginaActual + 1} / ${totalPaginas}`;
-    }
-}
-
-if (btnUp) {
-    btnUp.addEventListener('click', () => {
-        if (paginaActual > 0) { paginaActual--; actualizarPagina(); }
-    });
-}
-
-if (btnDown) {
-    btnDown.addEventListener('click', () => {
-        if (paginaActual < totalPaginas - 1) { paginaActual++; actualizarPagina(); }
-    });
-}
-
-
-// --- BASE DE DATOS DE JUEGOS CON IMÁGENES SEGURAS ---
+// --- BASE DE DATOS DE JUEGOS PREMIUM ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -131,6 +101,7 @@ const listaJuegos = [
     }
 ];
 
+// --- RENDERIZADO DEL CATÁLOGO ---
 function renderizarCatalogo(juegos) {
     if (!gamesGrid) return;
     gamesGrid.innerHTML = "";
@@ -143,10 +114,12 @@ function renderizarCatalogo(juegos) {
             <div class="game-card-title">${juego.titulo}</div>
         `;
         
+        // Al hacer clic, inyecta el juego y hace scroll automático suave hasta la consola
         card.addEventListener('click', () => {
             if (gameFrame) gameFrame.src = juego.url;
-            paginaActual = 1; 
-            actualizarPagina();
+            if (streamSection) {
+                streamSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
         
         gamesGrid.appendChild(card);
@@ -186,5 +159,5 @@ if (fullscreenBtn) {
     });
 }
 
-// Carga inicial directa y forzada
+// Pintar catálogo inicial de inmediato
 filtrarYOrdenar();
