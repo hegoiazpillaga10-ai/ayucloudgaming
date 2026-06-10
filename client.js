@@ -1,9 +1,8 @@
-// --- ELEMENTOS DE LA INTERFAZ ---
 const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 
-// --- BASE DE DATOS DE JUEGOS ENLACES ORIGINALES ---
+// --- BASE DE DATOS ORIGINAL BLINDADA ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -43,7 +42,7 @@ const listaJuegos = [
     },
     {
         titulo: "Pokelike",
-        url: "https://hwcdn.net", // Enlace de carga crudo directo del juego
+        url: "https://dynamons.io",
         icono: "🐉", color: "linear-gradient(135deg, #11998e, #38ef7d)",
         jugados: 14500, fecha: 202614
     },
@@ -61,19 +60,19 @@ const listaJuegos = [
     },
     {
         titulo: "Rocket League",
-        url: "https://3dcar.games",
+        url: "https://github.io", // Servidor espejo original en GitHub (No bloqueable)
         icono: "🏎️", color: "linear-gradient(135deg, #00c6ff, #0072ff)",
         jugados: 8000, fecha: 202512
     },
     {
         titulo: "Fall Guys",
-        url: "https://lolbeans.io",
+        url: "https://lolbeans.io", // El servidor original independiente del juego multijugador real
         icono: "👑", color: "linear-gradient(135deg, #ff007f, #ffaa00)",
         jugados: 14000, fecha: 202607
     },
     {
         titulo: "Brawl Stars",
-        url: "https://superroyale.io",
+        url: "https://github.io", // Servidor espejo oficial de la comunidad en GitHub
         icono: "⭐", color: "linear-gradient(135deg, #fbc531, #4cd137)",
         jugados: 18000, fecha: 202608
     },
@@ -103,7 +102,7 @@ const listaJuegos = [
     },
     {
         titulo: "Subnautica",
-        url: "https://deeeep.io",
+        url: "https://github.io", // Servidor web de código abierto
         icono: "🦈", color: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
         jugados: 16500, fecha: 202613
     }
@@ -123,9 +122,8 @@ function renderizarCatalogo(juegos) {
         `;
         
         card.addEventListener('click', () => {
-            // MOTOR PROXYS TRANSPARENTE: Enmascara de forma automática el juego para saltarse el firewall escolar
-            const urlCamuflada = "https://allorigins.win" + encodeURIComponent(juego.url);
-            window.open(urlCamuflada, '_blank');
+            // El código abre directamente el servidor original sin enmascaramientos rotos
+            window.open(juego.url, '_blank');
         });
         
         gamesGrid.appendChild(card);

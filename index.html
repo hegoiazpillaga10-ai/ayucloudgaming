@@ -14,7 +14,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Barra de scroll suave a la derecha estilo GitHub */
         body {
             background-color: #111;
             color: #fff;
@@ -33,7 +32,7 @@
             background: #1a1a1a;
         }
         body::-webkit-scrollbar-thumb {
-            background-color: #107c10; /* Verde Xbox */
+            background-color: #107c10;
             border-radius: 6px;
             border: 3px solid #1a1a1a;
         }
@@ -56,7 +55,6 @@
             gap: 50px;
         }
 
-        /* ================= SECCIÓN 1: EL CATÁLOGO ================= */
         .section-block {
             width: 100%;
             background: #161616;
@@ -116,14 +114,12 @@
             outline: none;
         }
 
-        /* Cuadrícula de juegos */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 20px;
         }
         
-        /* Tarjetas de juego rediseñadas con degradados en vez de imágenes externas */
         .game-card {
             background-color: #222;
             border-radius: 12px;
@@ -140,7 +136,6 @@
             box-shadow: 0 10px 20px rgba(16, 124, 16, 0.2);
         }
         
-        /* El cuadro del icono del juego */
         .game-card-art {
             width: 100%;
             aspect-ratio: 3 / 4;
@@ -164,51 +159,6 @@
             justify-content: center;
             border-top: 1px solid #333;
         }
-
-        /* ================= SECCIÓN 2: EL REPRODUCTOR ================= */
-        .player-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #000;
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-        .fullscreen-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            border: 1px solid #444;
-            padding: 12px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .fullscreen-btn:hover {
-            background-color: #107c10;
-            border-color: #107c10;
-        }
-
-        /* ================= SECCIÓN 3: DOCUMENTO INFO ================= */
-        .info-document {
-            background: #161616;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 5px solid #107c10;
-            line-height: 1.6;
-        }
-        .info-document h3 { margin-bottom: 15px; color: #107c10; }
-        .info-document p { margin-bottom: 12px; color: #ccc; }
     </style>
 </head>
 <body>
@@ -216,14 +166,12 @@
     <h1>AyuCloudGaming</h1>
 
     <div class="main-content">
-        
-        <!-- SECCIÓN 1: EXPLORAR JUEGOS -->
         <section class="section-block">
-            <h2>Catálogo de Juegos</h2>
+            <h2>Catálogo Oficial de Juegos</h2>
             <div class="toolbar">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar juego específico...">
+                    <input type="text" id="searchInput" placeholder="Buscar juego original...">
                 </div>
                 <div class="sort-box">
                     <select id="sortInput">
@@ -235,28 +183,13 @@
             </div>
             <div class="games-grid" id="gamesGrid"></div>
         </section>
-
-        <!-- SECCIÓN 2: PANTALLA DE JUEGO -->
-        <section class="section-block" id="streamSection">
-            <h2>Consola en Directo</h2>
-            <div class="player-wrapper" id="videoPlayer">
-                <iframe id="gameFrame" src="about:blank" style="background: #000;"></iframe>
-                <button class="fullscreen-btn" id="fullscreenBtn" title="Pantalla Completa">
-                    <i class="fa-solid fa-expand"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: INFORMACIÓN -->
-        <section class="info-document">
-            <h3>Información del Sistema</h3>
-            <p>Bienvenido a AyuCloudGaming. Esta plataforma emula la experiencia de juego en la nube de forma totalmente integrada y gratuita.</p>
-            <p><strong>Estado del sistema:</strong> Optimizado de forma segura para redes escolares.</p>
-        </section>
-
     </div>
 
-    <!-- Forzamos la nueva versión del script (v4) -->
-    <script src="client.js?v=4"></script>
+    <!-- Forzamos de forma dinámica la destrucción de la caché del instituto -->
+    <script>
+        const script = document.createElement('script');
+        script.src = 'client.js?v=' + Date.now(); // Carga una versión única cada milisegundo
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
