@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Barra de scroll suave y natural a la derecha estilo GitHub */
+        /* Barra de scroll suave a la derecha estilo GitHub */
         body {
             background-color: #111;
             color: #fff;
@@ -26,7 +26,6 @@
             overflow-y: scroll;
         }
 
-        /* Diseño premium para la barra de scroll derecha */
         body::-webkit-scrollbar {
             width: 12px;
         }
@@ -117,12 +116,14 @@
             outline: none;
         }
 
-        /* Cuadrícula de juegos fluida */
+        /* Cuadrícula de juegos */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 20px;
         }
+        
+        /* Tarjetas de juego rediseñadas con degradados en vez de imágenes externas */
         .game-card {
             background-color: #222;
             border-radius: 12px;
@@ -138,12 +139,18 @@
             border-color: #107c10;
             box-shadow: 0 10px 20px rgba(16, 124, 16, 0.2);
         }
-        .game-card img {
+        
+        /* El cuadro del icono del juego */
+        .game-card-art {
             width: 100%;
             aspect-ratio: 3 / 4;
-            object-fit: cover;
-            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
         }
+        
         .game-card-title {
             padding: 10px;
             text-align: center;
@@ -151,10 +158,11 @@
             font-weight: bold;
             background: #1e1e1e;
             color: #fff;
-            min-height: 40px;
+            min-height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-top: 1px solid #333;
         }
 
         /* ================= SECCIÓN 2: EL REPRODUCTOR ================= */
@@ -243,12 +251,12 @@
         <section class="info-document">
             <h3>Información del Sistema</h3>
             <p>Bienvenido a AyuCloudGaming. Esta plataforma emula la experiencia de juego en la nube de forma totalmente integrada y gratuita.</p>
-            <p><strong>Estado del sistema:</strong> Operacional y Libre de bloqueos de red externos.</p>
+            <p><strong>Estado del sistema:</strong> Optimizado de forma segura para redes escolares.</p>
         </section>
 
     </div>
 
-    <!-- Forzamos una versión nueva del script (v3) para destruir la caché del navegador -->
-    <script src="client.js?v=3"></script>
+    <!-- Forzamos la nueva versión del script (v4) -->
+    <script src="client.js?v=4"></script>
 </body>
 </html>
