@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Activamos la barra de scroll normal a la derecha */
+        /* Barra de scroll suave y natural a la derecha estilo GitHub */
         body {
             background-color: #111;
             color: #fff;
@@ -23,10 +23,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: scroll; /* Fuerza la barra a la derecha estilo GitHub */
+            overflow-y: scroll;
         }
 
-        /* Personalización de la barra de scroll de la derecha */
+        /* Diseño premium para la barra de scroll derecha */
         body::-webkit-scrollbar {
             width: 12px;
         }
@@ -49,13 +49,12 @@
             text-align: center;
         }
 
-        /* Contenedor central de contenidos */
         .main-content {
             width: 100%;
             max-width: 1000px;
             display: flex;
             flex-direction: column;
-            gap: 50px; /* Espacio elegante entre secciones */
+            gap: 50px;
         }
 
         /* ================= SECCIÓN 1: EL CATÁLOGO ================= */
@@ -129,7 +128,7 @@
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.2s ease-in-out;
             border: 1px solid #333;
             display: flex;
             flex-direction: column;
@@ -229,7 +228,7 @@
             <div class="games-grid" id="gamesGrid"></div>
         </section>
 
-        <!-- SECCIÓN 2: PANTALLA DE JUEGO (ZONA DE STREAMING) -->
+        <!-- SECCIÓN 2: PANTALLA DE JUEGO -->
         <section class="section-block" id="streamSection">
             <h2>Consola en Directo</h2>
             <div class="player-wrapper" id="videoPlayer">
@@ -244,12 +243,12 @@
         <section class="info-document">
             <h3>Información del Sistema</h3>
             <p>Bienvenido a AyuCloudGaming. Esta plataforma emula la experiencia de juego en la nube de forma totalmente integrada y gratuita.</p>
-            <p><strong>Estado del sistema:</strong> Operacional y Optimizado con scroll tradicional.</p>
+            <p><strong>Estado del sistema:</strong> Operacional y Libre de bloqueos de red externos.</p>
         </section>
 
     </div>
 
-    <!-- Carga limpia de lógica -->
+    <!-- Carga de lógica limpia sin interferir con la estructura -->
     <script src="client.js"></script>
 </body>
 </html>

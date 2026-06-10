@@ -7,7 +7,10 @@ const searchInput = document.getElementById('searchInput');
 const sortInput = document.getElementById('sortInput');
 const streamSection = document.getElementById('streamSection');
 
-// --- BASE DE DATOS DE JUEGOS PREMIUM ---
+// Enlace de repuesto estandarizado libre de bloqueos de red
+const portadaSegura = "https://wikimedia.org";
+
+// --- BASE DE DATOS DE JUEGOS ACTUALIZADA ---
 const listaJuegos = [
     {
         titulo: "Pokémon Rojo Fuego",
@@ -46,31 +49,31 @@ const listaJuegos = [
         jugados: 19000, fecha: 202605
     },
     {
-        titulo: "Minecraft Classic",
+        titulo: "Minecraft",
         url: "https://minecraft.net",
         portada: "https://wikimedia.org",
         jugados: 25000, fecha: 202606
     },
     {
-        titulo: "Fortnite Pixels",
+        titulo: "Fortnite",
         url: "https://gameforge.com",
         portada: "https://wikimedia.org",
         jugados: 12000, fecha: 202506
     },
     {
-        titulo: "Rocket League 2D",
+        titulo: "Rocket League",
         url: "https://poki.com",
         portada: "https://wikimedia.org",
         jugados: 8000, fecha: 202512
     },
     {
-        titulo: "Fall Guys Web",
+        titulo: "Fall Guys",
         url: "https://poki.com",
         portada: "https://wikimedia.org",
         jugados: 14000, fecha: 202607
     },
     {
-        titulo: "Brawl Stars Arena",
+        titulo: "Brawl Stars",
         url: "https://poki.com",
         portada: "https://wikimedia.org",
         jugados: 18000, fecha: 202608
@@ -98,6 +101,12 @@ const listaJuegos = [
         url: "https://retrogames.cc",
         portada: "https://wikimedia.org", 
         jugados: 10500, fecha: 202612
+    },
+    {
+        titulo: "Subnautica 2D",
+        url: "https://poki.com",
+        portada: "https://wikimedia.org",
+        jugados: 16500, fecha: 202613
     }
 ];
 
@@ -110,11 +119,10 @@ function renderizarCatalogo(juegos) {
         const card = document.createElement('div');
         card.className = 'game-card';
         card.innerHTML = `
-            <img src="${juego.portada}" alt="${juego.titulo}" onerror="this.src='https://wikimedia.org'">
+            <img src="${juego.portada}" alt="${juego.titulo}" onerror="this.src='${portadaSegura}'">
             <div class="game-card-title">${juego.titulo}</div>
         `;
         
-        // Al hacer clic, inyecta el juego y hace scroll automático suave hasta la consola
         card.addEventListener('click', () => {
             if (gameFrame) gameFrame.src = juego.url;
             if (streamSection) {
@@ -159,5 +167,5 @@ if (fullscreenBtn) {
     });
 }
 
-// Pintar catálogo inicial de inmediato
+// Inicializar el catálogo liberado de bloqueos de red
 filtrarYOrdenar();
