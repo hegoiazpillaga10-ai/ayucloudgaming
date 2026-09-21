@@ -172,6 +172,26 @@
         Steam
     </div>
 </a>
+<!-- Cuadradito de Steam -->
+<a href="https://steampowered.com" target="_blank" class="game-card" style="text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #1b2838, #2a475e);">
+    <div style="font-size: 50px; flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+        🎮
+    </div>
+    <div class="game-card-title">
+        Steam
+    </div>
+</a>
+
+<!-- Activador automático -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const tarjetaSteam = document.querySelector('a[href*="steampowered.com"]');
+    const listaJuegos = document.querySelector('.games-grid, #games-grid, .grid');
+    if (tarjetaSteam && listaJuegos) {
+        listaJuegos.appendChild(tarjetaSteam);
+    }
+});
+</script>
 
     <div class="main-content">
         <section class="section-block">
