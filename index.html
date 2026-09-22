@@ -25,18 +25,18 @@
             padding: 20px;
         }
 
-        /* Modificado para mostrar exactamente 4 columnas en pantallas grandes */
+        /* Fuerza de forma estricta las 4 columnas */
         .games-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 20px !important;
         }
 
-        /* Si se abre desde un móvil, se adapta automáticamente para que no se vea mal */
+        /* Solo cambia si se abre desde pantallas de móviles muy pequeñas */
         @media (max-width: 768px) {
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+                gap: 15px !important;
             }
         }
 
@@ -79,7 +79,7 @@
             border-top: 1px solid #333;
         }
 
-        /* Colores personalizados para destacar las redes sociales */
+        /* Colores de las redes sociales */
         .twitch-card { background: linear-gradient(135deg, #4b367c, #6441a5) !important; }
         .tiktok-card { background: linear-gradient(135deg, #010101, #25f4ee, #fe0979) !important; }
         .instagram-card { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; }
@@ -92,7 +92,7 @@
     <div class="main-content">
         <div class="games-grid">
 
-            <!-- PRIMERA LÍNEA (4 ELEMENTOS) -->
+            <!-- Fila 1 -->
             <a href="https://xbox.com" target="_blank" class="game-card">
                 <div class="game-icon">🟢</div>
                 <div class="game-card-title">Xbox Cloud Gaming</div>
@@ -113,7 +113,7 @@
                 <div class="game-card-title">TikTok</div>
             </a>
 
-            <!-- SEGUNDA LÍNEA (4 ELEMENTOS) -->
+            <!-- Fila 2 -->
             <a href="#" target="_blank" class="game-card instagram-card">
                 <div class="game-icon" style="background: transparent;">📸</div>
                 <div class="game-card-title">Instagram</div>
@@ -134,7 +134,7 @@
                 <div class="game-card-title">Minecraft (Eaglecraft)</div>
             </a>
 
-            <!-- TERCERA LÍNEA (4 ELEMENTOS) -->
+            <!-- Fila 3 -->
             <a href="https://crazygames.com" target="_blank" class="game-card">
                 <div class="game-icon">📐</div>
                 <div class="game-card-title">Geometry Dash</div>
@@ -155,7 +155,7 @@
                 <div class="game-card-title">Fall Guys</div>
             </a>
 
-            <!-- CUARTA LÍNEA -->
+            <!-- Fila 4 -->
             <a href="https://poki.com" target="_blank" class="game-card">
                 <div class="game-icon">🤠</div>
                 <div class="game-card-title">Rodeo Stampede</div>
@@ -176,7 +176,7 @@
                 <div class="game-card-title">Peak</div>
             </a>
 
-            <!-- QUINTA LÍNEA -->
+            <!-- Fila 5 -->
             <a href="https://xbox.com/games/rocket-league/c125w9bg2k0v" target="_blank" class="game-card">
                 <div class="game-icon">⚽🏎️</div>
                 <div class="game-card-title">Rocket League</div>
