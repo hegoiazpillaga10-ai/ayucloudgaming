@@ -69,6 +69,11 @@
             font-size: 0.9rem;
             border-top: 1px solid #333;
         }
+
+        /* Colores personalizados para destacar las redes sociales en la cuadrícula */
+        .twitch-card { background: linear-gradient(135deg, #4b367c, #6441a5) !important; }
+        .tiktok-card { background: linear-gradient(135deg, #010101, #25f4ee, #fe0979) !important; }
+        .instagram-card { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; }
     </style>
 </head>
 <body>
@@ -78,12 +83,46 @@
     <div class="main-content">
         <div class="games-grid">
 
+            <!-- PLATAFORMAS OFICIALES Y REDES SOCIALES (PRIMERAS POSICIONES) -->
+            <a href="https://xbox.com" target="_blank" class="game-card">
+                <div class="game-icon">🟢</div>
+                <div class="game-card-title">Xbox Cloud Gaming</div>
+            </a>
+
+            <a href="https://geforcenow.com" target="_blank" class="game-card">
+                <div class="game-icon">💚</div>
+                <div class="game-card-title">Nvidia</div>
+            </a>
+
+            <a href="https://steampowered.com" target="_blank" class="game-card" style="background: linear-gradient(135deg, #1b2838, #2a475e);">
+                <div class="game-icon" style="background: transparent;">🎮</div>
+                <div class="game-card-title">Steam</div>
+            </a>
+
+            <!-- Tarjeta de TikTok -->
+            <a href="#" target="_blank" class="game-card tiktok-card">
+                <div class="game-icon" style="background: transparent;">🎵</div>
+                <div class="game-card-title">TikTok</div>
+            </a>
+
+            <!-- Tarjeta de Instagram -->
+            <a href="#" target="_blank" class="game-card instagram-card">
+                <div class="game-icon" style="background: transparent;">📸</div>
+                <div class="game-card-title">Instagram</div>
+            </a>
+
+            <!-- Tarjeta de Twitch -->
+            <a href="#" target="_blank" class="game-card twitch-card">
+                <div class="game-icon" style="background: transparent;">🔮</div>
+                <div class="game-card-title">Twitch</div>
+            </a>
+
+            <!-- JUEGOS DEL CATÁLOGO -->
             <a href="https://poki.com" target="_blank" class="game-card">
                 <div class="game-icon">🏃</div>
                 <div class="game-card-title">Subway Surfers</div>
             </a>
 
-            <!-- ENLACE DE MINECRAFT CORREGIDO SIN ERRORES -->
             <a href="https://eaglercraft.com" target="_blank" class="game-card">
                 <div class="game-icon">🧱</div>
                 <div class="game-card-title">Minecraft (Eaglecraft)</div>
@@ -132,21 +171,6 @@
             <a href="https://xbox.com/games/rocket-league/c125w9bg2k0v" target="_blank" class="game-card">
                 <div class="game-icon">⚽🏎️</div>
                 <div class="game-card-title">Rocket League</div>
-            </a>
-
-            <a href="https://xbox.com" target="_blank" class="game-card">
-                <div class="game-icon">🟢🟩</div>
-                <div class="game-card-title">Xbox Cloud Gaming</div>
-            </a>
-
-            <a href="https://geforcenow.com" target="_blank" class="game-card">
-                <div class="game-icon">🟢🖤</div>
-                <div class="game-card-title">Nvidia</div>
-            </a>
-
-            <a href="https://steampowered.com" target="_blank" class="game-card" style="background: linear-gradient(135deg, #1b2838, #2a475e);">
-                <div class="game-icon" style="background: transparent;">🎮</div>
-                <div class="game-card-title">Steam</div>
             </a>
 
         </div>
