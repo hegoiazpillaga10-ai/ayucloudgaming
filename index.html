@@ -19,21 +19,18 @@
             font-size: 2.5rem;
         }
 
-        /* Reducido el ancho máximo para que los cuadraditos se vuelvan más delgados */
         .main-content {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Fuerza las 4 columnas con mayor separación para estilizar el diseño */
         .games-grid {
-            display: grid !important;
+            display: grid;
             grid-template-columns: repeat(4, 1fr) !important;
             gap: 25px !important;
         }
 
-        /* Adaptación automática para pantallas móviles */
         @media (max-width: 768px) {
             .games-grid {
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
@@ -80,10 +77,12 @@
             border-top: 1px solid #333;
         }
 
-        /* Colores de las redes sociales */
         .twitch-card { background: linear-gradient(135deg, #4b367c, #6441a5) !important; }
         .tiktok-card { background: linear-gradient(135deg, #010101, #25f4ee, #fe0979) !important; }
         .instagram-card { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important; }
+        
+        /* Color especial dorado/amarillo clásico de la saga GTA */
+        .gta-card { background: linear-gradient(135deg, #332200, #b8860b) !important; }
     </style>
 </head>
 <body>
@@ -181,6 +180,44 @@
             <a href="https://xbox.com/games/rocket-league/c125w9bg2k0v" target="_blank" class="game-card">
                 <div class="game-icon">⚽🏎️</div>
                 <div class="game-card-title">Rocket League</div>
+            </a>
+
+            <!-- NUEVA SAGA GTA -->
+            <a href="https://retrogames.cc" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">🚗</div>
+                <div class="game-card-title">GTA III</div>
+            </a>
+
+            <a href="https://retrogames.cc" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">🌴</div>
+                <div class="game-card-title">GTA Vice City</div>
+            </a>
+
+            <a href="https://retrogames.cc" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">🏙️</div>
+                <div class="game-card-title">GTA San Andreas</div>
+            </a>
+
+            <!-- Fila 6 -->
+            <a href="https://retrogames.cc" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">🕶️</div>
+                <div class="game-card-title">GTA VC Stories</div>
+            </a>
+
+            <a href="https://geforcenow.com" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">🗽</div>
+                <div class="game-card-title">GTA IV</div>
+            </a>
+
+            <a href="https://xbox.com" target="_blank" class="game-card gta-card">
+                <div class="game-icon" style="background: transparent;">💰</div>
+                <div class="game-card-title">GTA V</div>
+            </a>
+
+            <!-- Tarjeta extra de relleno para cuadrar las líneas de 4 en 4 -->
+            <a href="https://xbox.com" target="_blank" class="game-card">
+                <div class="game-icon">➕</div>
+                <div class="game-card-title">Próximamente</div>
             </a>
 
         </div>
